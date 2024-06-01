@@ -1,16 +1,18 @@
 import os
+import random
 from unidecode import unidecode
 from PIL import ImageDraw, Image, ImageFont, ImageChops
 from pyrogram import *
 from pyrogram.types import *
 from logging import getLogger
-from pyrogram.types import Message
-from MahakRobot import pbot as app
-from MahakRobot.CuteDb.Weldb import *
 
+from AvishaRobot import pbot as app
+
+from AvishaRobot.database.wel_db import *
+
+COMMAND_HANDLER = ". /".split() # COMMAND HANDLER
 
 LOGGER = getLogger(__name__)
-
 
 class temp:
     ME = None
@@ -32,33 +34,33 @@ def circle(pfp, size=(450, 450)):
     return pfp
 
 def welcomepic(pic, user, chat, id, uname):
-    background = Image.open("MahakRobot/Love/WELL2.PNG")
+    background = Image.open("AvishaRobot/resources/bg.jpg")
     pfp = Image.open(pic).convert("RGBA")
     pfp = circle(pfp)
     pfp = pfp.resize(
-        (605, 605)
+        (450, 450)
     ) 
     draw = ImageDraw.Draw(background)
-    font = ImageFont.truetype('MahakRobot/Love/font.ttf', size=75)
-    font2 = ImageFont.truetype('MahakRobot/Love/font.ttf', size=90)
-    draw.text((150, 450), f'NAME : {unidecode(user)}', fill="black", font=font)
-    draw.text((150, 550), f'ID : {id}', fill="black", font=font)
-    draw.text((150, 650), f"USERNAME : {uname}", fill="black",font=font)
-    pfp_position = (1077, 183)  
+    font = ImageFont.truetype('AvishaRobot/resources/SwanseaBold-D0ox.ttf', size=40)
+    welcome_font = ImageFont.truetype('AvishaRobot/resources/SwanseaBold-D0ox.ttf', size=60)
+    draw.text((30, 300), f'NAME : {unidecode(user)}', fill=(255, 255, 255), font=font)
+    draw.text((30, 370), f'ID : {id}', fill=(255, 255, 255), font=font)
+    draw.text((30,430), f"USERNAME : {uname}", fill=(255,255,255),font=font)
+    pfp_position = (770, 140)  
     background.paste(pfp, pfp_position, pfp)  
     background.save(
         f"downloads/welcome#{id}.png"
     )
     return f"downloads/welcome#{id}.png"
 
-####
+#######
 
 @app.on_chat_member_updated(filters.group, group=-3)
 async def greet_group(_, member: ChatMemberUpdated):
     chat_id = member.chat.id
-   # A = await wlcm.find_one({"chat_id" : chat_id})
-   # if not A:
-  #     return
+    #A = await wlcm.find_one({"chat_id" : chat_id})
+    #if not A:
+      # return
     if (
         not member.new_chat_member
         or member.new_chat_member.status in {"banned", "left", "restricted"}
@@ -71,7 +73,7 @@ async def greet_group(_, member: ChatMemberUpdated):
             user.photo.big_file_id, file_name=f"pp{user.id}.png"
         )
     except AttributeError:
-        pic = "MahakRobot/Love/upic.png"
+        pic = "HuTao/resources/profilepic.jpg"
     if (temp.MELCOW).get(f"welcome-{member.chat.id}") is not None:
         try:
             await temp.MELCOW[f"welcome-{member.chat.id}"].delete()
@@ -85,29 +87,27 @@ async def greet_group(_, member: ChatMemberUpdated):
             member.chat.id,
             photo=welcomeimg,
             caption= f"""
-ㅤㅤㅤ◦•●◉✿ ᴡᴇʟᴄᴏᴍᴇ ʙᴀʙʏ ✿◉●•◦
+**ㅤㅤㅤ◦•●◉✿ ᴡᴇʟᴄᴏᴍᴇ ʙᴀʙʏ ✿◉●•◦
 ▰▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▰
 
-● ɴᴀᴍᴇ ➥  {user.mention}
-● ᴜsᴇʀɴᴀᴍᴇ ➥  @{user.username}
-● ᴜsᴇʀ ɪᴅ ➥  {user.id}
+● ɢʀᴏᴜᴘ ➥ {member.chat.title}
+● ɴᴀᴍᴇ ➥ {user.mention}
+● ᴜsᴇʀ ɪᴅ ➥ {user.id}
+● ᴜsᴇʀɴᴀᴍᴇ ➥ @{user.username}
 
-❖ ᴘᴏᴡᴇʀᴇᴅ ʙʏ ➥  ๛ᴍ ᴀ ʜ ᴀ ᴋ ♡゙ 
+❖ ᴘᴏᴡᴇʀᴇᴅ ʙʏ ➥ [๛ᴀ ᴠ ɪ s ʜ ᴀ ࿐](https://t.me/the_friendz)**
 ▰▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▰
 """,
-reply_markup=InlineKeyboardMarkup(
-[
-[InlineKeyboardButton(f"ᴀᴅᴅ ᴍᴇ ʙᴀʙʏ", url=f"https://t.me/mahakxBot?startgroup=new"),
-]
-]
-))
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton (f"ᴠɪᴇᴡ ᴜsᴇʀ", url=f"https://t.me/{user.username}")]])
 
+            )
     except Exception as e:
         LOGGER.error(e)
     try:
         os.remove(f"downloads/welcome#{user.id}.png")
         os.remove(f"downloads/pp{user.id}.png")
     except Exception as e:
-        pass
+        return 
 
 
+#####
