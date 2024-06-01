@@ -38,15 +38,15 @@ def welcomepic(pic, user, chat, id, uname):
     pfp = Image.open(pic).convert("RGBA")
     pfp = circle(pfp)
     pfp = pfp.resize(
-        (450, 450)
+        (605, 605)
     ) 
     draw = ImageDraw.Draw(background)
-    font = ImageFont.truetype('MahakRobot/resources/SwanseaBold-D0ox.ttf', size=40)
-    welcome_font = ImageFont.truetype('MahakRobot/resources/SwanseaBold-D0ox.ttf', size=60)
-    draw.text((30, 300), f'NAME : {unidecode(user)}', fill=(255, 255, 255), font=font)
-    draw.text((30, 370), f'ID : {id}', fill=(255, 255, 255), font=font)
-    draw.text((30,430), f"USERNAME : {uname}", fill=(255,255,255),font=font)
-    pfp_position = (770, 140)  
+    font = ImageFont.truetype('MahakRobot/resources/SwanseaBold-D0ox.ttf', size=75)
+    welcome_font = ImageFont.truetype('MahakRobot/resources/SwanseaBold-D0ox.ttf', size=90)
+    draw.text((150, 450), f'NAME : {unidecode(user)}', fill="black", font=font)
+    draw.text((150, 550), f'ID : {id}', fill="black", font=font)
+    draw.text((150, 650), f"USERNAME : {uname}", fill="black",font=font)
+    pfp_position = (1077, 183)  
     background.paste(pfp, pfp_position, pfp)  
     background.save(
         f"downloads/welcome#{id}.png"
