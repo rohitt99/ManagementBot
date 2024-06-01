@@ -4,7 +4,6 @@ from PIL import ImageDraw, Image, ImageFont, ImageChops
 from pyrogram import *
 from pyrogram.types import *
 from logging import getLogger
-from MahakRobot import LOGGER
 from pyrogram.types import Message
 from MahakRobot import pbot as app
 from MahakRobot.CuteDb.Weldb import *
