@@ -1,5 +1,6 @@
 aiofiles
 requests
+async_pymongo
 aiohttp==3.9.1
 apscheduler==3.6.3
 asyncio==3.4.3
