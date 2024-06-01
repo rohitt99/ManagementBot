@@ -6,9 +6,9 @@ from pyrogram import *
 from pyrogram.types import *
 from logging import getLogger
 
-from AvishaRobot import pbot as app
+from MahakRobot import pbot as app
 
-from AvishaRobot.database.wel_db import *
+from MahakRobot.database.wel_db import *
 
 COMMAND_HANDLER = ". /".split() # COMMAND HANDLER
 
@@ -34,15 +34,15 @@ def circle(pfp, size=(450, 450)):
     return pfp
 
 def welcomepic(pic, user, chat, id, uname):
-    background = Image.open("AvishaRobot/resources/bg.jpg")
+    background = Image.open("MahakRobot/resources/bg.jpg")
     pfp = Image.open(pic).convert("RGBA")
     pfp = circle(pfp)
     pfp = pfp.resize(
         (450, 450)
     ) 
     draw = ImageDraw.Draw(background)
-    font = ImageFont.truetype('AvishaRobot/resources/SwanseaBold-D0ox.ttf', size=40)
-    welcome_font = ImageFont.truetype('AvishaRobot/resources/SwanseaBold-D0ox.ttf', size=60)
+    font = ImageFont.truetype('MahakRobot/resources/SwanseaBold-D0ox.ttf', size=40)
+    welcome_font = ImageFont.truetype('MahakRobot/resources/SwanseaBold-D0ox.ttf', size=60)
     draw.text((30, 300), f'NAME : {unidecode(user)}', fill=(255, 255, 255), font=font)
     draw.text((30, 370), f'ID : {id}', fill=(255, 255, 255), font=font)
     draw.text((30,430), f"USERNAME : {uname}", fill=(255,255,255),font=font)
@@ -63,7 +63,7 @@ async def greet_group(_, member: ChatMemberUpdated):
       # return
     if (
         not member.new_chat_member
-        or member.new_chat_member.status in {"banned", "left", "restricted"}
+        or member.new_chat_member.status in {"left"}
         or member.old_chat_member
     ):
         return
@@ -95,7 +95,7 @@ async def greet_group(_, member: ChatMemberUpdated):
 ● ᴜsᴇʀ ɪᴅ ➥ {user.id}
 ● ᴜsᴇʀɴᴀᴍᴇ ➥ @{user.username}
 
-❖ ᴘᴏᴡᴇʀᴇᴅ ʙʏ ➥ [๛ᴀ ᴠ ɪ s ʜ ᴀ ࿐](https://t.me/the_friendz)**
+❖ ᴘᴏᴡᴇʀᴇᴅ ʙʏ ➥ ๛ᴍ ᴀ ʜ ᴀ ᴋ ࿐ **
 ▰▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▰
 """,
             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton (f"ᴠɪᴇᴡ ᴜsᴇʀ", url=f"https://t.me/{user.username}")]])
