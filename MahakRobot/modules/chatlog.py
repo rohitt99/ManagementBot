@@ -3,7 +3,7 @@ from pyrogram import Client
 from pyrogram.types import Message
 from pyrogram import filters
 from pyrogram.types import(InlineKeyboardButton, InlineKeyboardMarkup, InputMediaPhoto, InputMediaVideo, Message)
-from MahakRobot import LOGGER 
+from MahakRobot import EVENT_LOGS
 from MahakRobot import pbot as app
 
 ABHI = [
