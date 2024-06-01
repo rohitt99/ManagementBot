@@ -1,7 +1,6 @@
 aiofiles
 unidecode
 requests
-async_pymongo
 aiohttp==3.9.1
 apscheduler==3.6.3
 asyncio==3.4.3
@@ -31,7 +30,7 @@ lxml==4.9.4
 markdown2==2.4.12
 motor==3.3.2
 opencv-python-headless==4.9.0.80
-pillow==10.2.0
+pillow==9.5.0
 pretty_errors==1.2.25
 psutil==5.9.7
 psycopg2-binary==2.9.9
@@ -63,6 +62,5 @@ youtube_search_python
 pyshorteners
 faker
 pyfiglet
-unidecode
 openai==1.26.0
 numpy==1.26.3
