@@ -1,4 +1,5 @@
 aiofiles
+unidecode
 requests
 async_pymongo
 aiohttp==3.9.1
