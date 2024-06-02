@@ -5,7 +5,6 @@ aiohttp==3.9.1
 apscheduler==3.6.3
 asyncio==3.4.3
 MukeshAPI
-beautifulsoup4==4.12.2
 halo==0.0.31
 
 qrcode
