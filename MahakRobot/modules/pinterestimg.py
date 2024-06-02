@@ -13,7 +13,7 @@ def extract_query(message):
 # Fetch image URLs from the API
 def fetch_images(query):
     try:
-        response = requests.get(f"https://aiimage.hellonepdevs.workers.dev/?prompt={query}&state=url")
+        response = requests.get(f"https://pinteresimage.nepcoderdevs.workers.dev/?query={query}&limit=9")
         response.raise_for_status()
         return response.json().get("images", [])
     except (requests.RequestException, ValueError) as e:
