@@ -15,14 +15,17 @@ def fetch_images(query):
     try:
         response = requests.get(f"https://pinteresimage.nepcoderdevs.workers.dev/?query={query}&limit=9")
         response.raise_for_status()
-        return response.json().get("images", [])
+        data = response.json()
+        if "images" in data and data["images"]:
+            return data["images"]
+        else:
+            return "No images found."
     except (requests.RequestException, ValueError) as e:
         return str(e)
 
 # Prepare media group for sending
 def prepare_media_group(image_urls):
-    media_group = [InputMediaPhoto(media=url) for url in image_urls[:6]]
-    return media_group
+    return [InputMediaPhoto(media=url) for url in image_urls[:6]]
 
 @app.on_message(filters.command(["pntimg"], prefixes=["/", "!", "%", ",", ".", "@", "#"]))
 async def pinterest(_, message):
@@ -36,7 +39,7 @@ async def pinterest(_, message):
     # Fetch images
     result = fetch_images(query)
     if isinstance(result, str):
-        return await message.reply(f"**Failed to fetch images: {result}**")
+        return await message.reply(f"**{result}**")
     image_urls = result
 
     # Prepare media group
@@ -46,12 +49,13 @@ async def pinterest(_, message):
 
     # Inform user and send media group
     msg = await message.reply("Scraping images from Pinterest...")
-    for count, media in enumerate(media_group, 1):
-        await msg.edit(f"=> Scraped {count} images")
-    
+
     try:
         await app.send_media_group(chat_id=chat_id, media=media_group, reply_to_message_id=message.id)
         await msg.delete()
     except Exception as e:
-        await msg.delete()
-        await message.reply(f"Error: {e}")
+        await msg.edit(f"Error: {e}")
+
+# Start the app (if not already running in your main file)
+if __name__ == "__main__":
+    app.run()
