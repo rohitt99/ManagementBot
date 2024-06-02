@@ -125,7 +125,7 @@ QUOTES_IMG = [
 
 # Handlers
 ANIMEQUOTES_HANDLER = DisableAbleCommandHandler("animequotes", animequotes)
-QUOTES_HANDLER = DisableAbleCommandHandler("quote", quotes)
+QUOTES_HANDLER = DisableAbleCommandHandler("quote1", quotes)
 CHANGE_QUOTE_HANDLER = CallbackQueryHandler(change_quote, pattern=r"change_quote")
 
 # Add handlers to the dispatcher
