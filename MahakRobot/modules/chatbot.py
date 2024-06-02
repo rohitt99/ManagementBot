@@ -1,3 +1,4 @@
+import logging
 import html
 import json
 import re
@@ -26,6 +27,7 @@ from MahakRobot import BOT_ID, BOT_NAME, BOT_USERNAME, dispatcher
 from MahakRobot.modules.helper_funcs.chat_status import user_admin, user_admin_no_reply
 from MahakRobot.modules.log_channel import gloggable
 
+logger = logging.getLogger(__name__)
 
 @user_admin_no_reply
 @gloggable
@@ -54,7 +56,6 @@ def mukeshrm(update: Update, context: CallbackContext) -> str:
 
     return ""
 
-
 @user_admin_no_reply
 @gloggable
 def mukeshadd(update: Update, context: CallbackContext) -> str:
@@ -82,7 +83,6 @@ def mukeshadd(update: Update, context: CallbackContext) -> str:
 
     return ""
 
-
 @user_admin
 @gloggable
 def mukesh(update: Update, context: CallbackContext):
@@ -102,7 +102,6 @@ def mukesh(update: Update, context: CallbackContext):
         parse_mode=ParseMode.HTML,
     )
 
-
 def mukesh_message(context: CallbackContext, message):
     reply_message = message.reply_to_message
     if message.text.lower() == "mukesh":
@@ -114,7 +113,6 @@ def mukesh_message(context: CallbackContext, message):
             return True
     else:
         return False
-
 
 def chatbot(update: Update, context: CallbackContext):
     message = update.effective_message
@@ -128,16 +126,24 @@ def chatbot(update: Update, context: CallbackContext):
         if not mukesh_message(context, message):
             return
         bot.send_chat_action(chat_id, action="typing")
-        url=f"https://mukesh-api.vercel.app/chatbot/{message.text}"
-        response = requests.get(url).json()["results"]
+        url = f"https://mukesh-api.vercel.app/chatbot/{message.text}"
         
-        message.reply_text(response)
-
-
-
-
-
-
+        try:
+            response = requests.get(url)
+            response.raise_for_status()  # Check if the request was successful
+            response_json = response.json()
+            
+            if "results" in response_json:
+                message.reply_text(response_json["results"])
+            else:
+                logger.error(f"Unexpected JSON structure: {response_json}")
+                message.reply_text("❍ ᴀɴ ᴜɴᴇxᴘᴇᴄᴛᴇᴅ ᴇʀʀᴏʀ ᴏᴄᴄᴜʀʀᴇᴅ.")
+        except requests.RequestException as e:
+            logger.error(f"Request failed: {e}")
+            message.reply_text("❍ ᴀɴ ᴇʀʀᴏʀ ᴏᴄᴄᴜʀʀᴇᴅ ᴡʜɪʟᴇ ᴄᴏɴɴᴇᴄᴛɪɴɢ ᴛᴏ ᴛʜᴇ ᴀᴘɪ.")
+        except json.JSONDecodeError:
+            logger.error(f"JSON decode error: {response.text}")
+            message.reply_text("❍ ᴀɴ ᴇʀʀᴏʀ ᴏᴄᴄᴜʀʀᴇᴅ ᴡʜɪʟᴇ ᴘᴀʀsɪɴɢ ᴛʜᴇ ᴀᴘɪ ʀᴇsᴘᴏɴsᴇ.")
 
 CHATBOTK_HANDLER = CommandHandler("chatbot", mukesh, run_async=True)
 ADD_CHAT_HANDLER = CallbackQueryHandler(mukeshadd, pattern=r"add_chat", run_async=True)
