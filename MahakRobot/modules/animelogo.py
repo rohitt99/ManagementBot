@@ -35,11 +35,6 @@ async def logo(app, msg: Message):
     )
 
 
-__mod_name__ = "ᴀɴɪᴍᴇ-ʟᴏɢᴏ"
 
-__help__ = """
-
- ❍ /animelogo ➛ ᴄʀᴇᴀᴛᴇ ᴏᴡɴ ᴛᴇxᴛ ᴀɴɪᴍᴇ ʟᴏɢᴏ ᴡɪᴛʜ ɴʏᴋᴀᴀ.
- """
 
 
