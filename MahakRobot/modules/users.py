@@ -124,6 +124,50 @@ async def send_chat(chat_id, message):
         logger.info(f"❍ {chat_id} ➛ ʙʟᴏᴄᴋᴇᴅ ᴛʜᴇ ʙᴏᴛ")
         return 400
     except
+PeerIdInvalid:
+        logger.info(f"❍ {chat_id} ➛ ɪᴅ ɪɴᴠᴀʟɪᴅ")
+        return 400
+    except Exception as e:
+        logger.exception(f"❍ {chat_id} ➛ ᴇʀʀᴏʀ: {e}")
+        return 500
+
+async def send_msg(user_id, message):
+    try:
+        await message.copy(chat_id=int(user_id))
+        return 200
+    except FloodWait as e:
+        await asyncio.sleep(e.value)
+        return await send_msg(user_id, message)
+    except InputUserDeactivated:
+        logger.info(f"❍ {user_id} ➛ ᴅᴇᴀᴄᴛɪᴠᴀᴛᴇᴅ")
+        return 400
+    except UserIsBlocked:
+        logger.info(f"❍ {user_id} ➛ ʙʟᴏᴄᴋᴇᴅ ᴛʜᴇ ʙᴏᴛ")
+        return 400
+    except PeerIdInvalid:
+        logger.info(f"❍ {user_id} ➛ ɪᴅ ɪɴᴠᴀʟɪᴅ")
+        return 400
+    except Exception as e:
+        logger.exception(f"❍ {user_id} ➛ ᴇʀʀᴏʀ: {e}")
+        return 500
+
+@dev_plus
+@Mukesh.on_message(filters.command("stats") & filters.user(OWNER_ID))
+async def stats_handler(bot: Client, m: Message):
+    total_users = len(get_all_users())
+    total_chats = len(user_db.get_all_chats())
+    await m.reply_text(
+        f"📊 ʙᴏᴛ sᴛᴀᴛɪsᴛɪᴄs:\n\n❅ ᴛᴏᴛᴀʟ ᴜsᴇʀꜱ ➠ {total_users}\n❅ ᴛᴏᴛᴀʟ ᴄʜᴀᴛꜱ ➠ {total_chats}"
+    )
+
+def main():
+    dispatcher.add_handler(CommandHandler("bchat", broadcast_chat_handler, Filters.reply))
+    dispatcher.add_handler(CommandHandler("buser", broadcast_user_handler, Filters.reply))
+    dispatcher.add_handler(CommandHandler("stats", stats_handler))
+    dispatcher.start()
+
+if __name__ == "__main__":
+    main()
 
 
 mod_name = "ɢ-ᴄᴀsᴛ"
