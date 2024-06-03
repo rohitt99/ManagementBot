@@ -44,7 +44,6 @@ async def send_live_scores(_, message):
     await message.reply("Fetching live scores...")
     
     scores = fetch_matches(url_live)
-    await message.reply.delete()
     await app.send_message(chat_id, scores)
 
 @app.on_message(filters.command(["recent"], prefixes=["/", "!", "%", ",", ".", "@", "#"]))
@@ -61,7 +60,6 @@ async def send_upcoming_matches(_, message):
     await message.reply("Fetching upcoming matches...")
     
     scores = fetch_matches(url_upcoming)
-    await message.reply.delete()
     await app.send_message(chat_id, scores)
 
 # Start the app (if not already running in your main file)
