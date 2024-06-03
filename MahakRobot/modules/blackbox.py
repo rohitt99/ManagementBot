@@ -17,7 +17,8 @@ async def chat_gpt(event):
 
     processing_message = await event.reply("💭")
     try:
-        response = requests.get(f"https://blackai.apinepdev.workers.dev/?question={query}")
+        response = requests.get(f"https://mukesh-api.vercel.app/blackbox?query="
+{query}")
         response.raise_for_status()
         result = response.json()
         result.pop("join", None)
