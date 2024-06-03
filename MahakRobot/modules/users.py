@@ -123,7 +123,7 @@ async def send_chat(chat_id, message):
     except UserIsBlocked:
         logger.info(f"❍ {chat_id} ➛ ʙʟᴏᴄᴋᴇᴅ ᴛʜᴇ ʙᴏᴛ")
         return 400
-    except
+    except:
 PeerIdInvalid:
         logger.info(f"❍ {chat_id} ➛ ɪᴅ ɪɴᴠᴀʟɪᴅ")
         return 400
