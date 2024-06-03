@@ -44,6 +44,7 @@ async def send_live_scores(_, message):
     await message.reply("Fetching live scores...")
     
     scores = fetch_matches(url_live)
+    await message.reply.delete()
     await app.send_message(chat_id, scores)
 
 @app.on_message(filters.command(["recent"], prefixes=["/", "!", "%", ",", ".", "@", "#"]))
