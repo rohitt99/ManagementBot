@@ -2,7 +2,7 @@ from pyrogram import filters
 from pyrogram.types import Message
 from MahakRobot import pbot as app
 from MahakRobot import OWNER_ID
-from MukeshRobot.modules.helper_funcs.chat_status import dev_plus
+from MahakRobot.modules.helper_funcs.chat_status import dev_plus
 import asyncio
 import time
 import datetime
