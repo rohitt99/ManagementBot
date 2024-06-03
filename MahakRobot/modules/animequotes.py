@@ -8,7 +8,7 @@ from MahakRobot.modules.disable import DisableAbleCommandHandler
 
 # Function to fetch a random anime quote
 def anime_quote():
-    url = "https://animechan.vercel.app/api/random"
+    url = "https://mukesh-api.vercel.app/randomquotes"
     try:
         response = requests.get(url)
         response.raise_for_status()  # Check for request errors
