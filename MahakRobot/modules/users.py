@@ -9,7 +9,7 @@ import datetime
 
 @dev_plus
 @app.on_message(filters.command("broadcast") & filters.user(OWNER_ID) & filters.reply)
-async def broadcast_handler(bot: Mukesh, m: Message):
+async def broadcast_handler(bot: app, m: Message):
     broadcast_msg = m.reply_to_message
     broadcast_type = m.text.split("_")[1].strip().lower()  # Extracting broadcast type from the command
 
