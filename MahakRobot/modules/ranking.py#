@@ -1,7 +1,7 @@
 from pyrogram import filters
 from pymongo import MongoClient
-from DAXXMUSIC import app
-from config import MONGO_DB_URI
+from MahakRobot import pbot as app
+from MahakRobot import MONGO_DB_URI
 from pyrogram.types import *
 from pyrogram.errors import MessageNotModified
 from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
