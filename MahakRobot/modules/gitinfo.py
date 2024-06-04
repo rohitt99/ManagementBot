@@ -1,65 +1,79 @@
-from aiohttp import ClientSession
+import asyncio, os, time, aiohttp
+import aiohttp
 from pyrogram import filters
+from blackpink import blackpink as bp
+from MahakRobot import pbot as app
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from MahakRobot import pbot
-from MahakRobot.utils.errors import capture_err
+
+EVAA = [
+    [
+        InlineKeyboardButton(text="ᴀᴅᴅ ᴍᴇ ʙᴀʙʏ", url=f"https://t.me/nykaaxbot?startgroup=true"),
+    ],
+]
+
+###
+@app.on_message(filters.command("blackpink"))
+async def blackpink(_, message):
+    text = message.text[len("/blackpink") :]
+    bp(f"{text}").save(f"blackpink_{message.from_user.id}.png", caption=f"❖ ʙʟᴀᴄᴋᴘɪɴɢ ʙʏ ➥ ๛ɴ ʏ ᴋ ᴀ ᴀ ࿐", reply_markup=InlineKeyboardMarkup(EVAA),)
+    await message.reply_photo(f"blackpink_{message.from_user.id}.png", caption=f"❖ ʙʟᴀᴄᴋᴘɪɴɢ ʙʏ ➥ ๛ɴ ʏ ᴋ ᴀ ᴀ ࿐", reply_markup=InlineKeyboardMarkup(EVAA),)
+    os.remove(f"blackpink_{message.from_user.id}.png")
 
 
-@pbot.on_message(filters.command(["github","git"]))
-@capture_err
+####
+
+@app.on_message(filters.command(["github", "git"]))
 async def github(_, message):
     if len(message.command) != 2:
-        return await message.reply_text("/github {username} \n`/github mahakxbot`")
+        await message.reply_text("❖ ➥ `/git tinaarobot`")
+        return
+
     username = message.text.split(None, 1)[1]
-    URL = f"https://api.github.com/users/{username}"
-    async with ClientSession() as session:
+    URL = f'https://api.github.com/users/{username}'
+
+    async with aiohttp.ClientSession() as session:
         async with session.get(URL) as request:
             if request.status == 404:
-                return await message.reply_text("❍ ʙᴏsᴅᴋ sᴀʜɪ ɢɪᴛʜᴜʙ ᴜsᴇʀɴᴀᴍᴇ ᴅᴀᴀʟ.")
+                return await message.reply_text("✦ ᴘʟᴇᴀsᴇ ᴘᴜᴛ ᴠᴀʟɪᴅ ɢɪᴛʜᴜʙ ᴜsᴇʀɴᴀᴍᴇ.")
+
             result = await request.json()
+
             try:
-                url = result["html_url"]
-                name = result["name"]
-                company = result["company"]
-                bio = result["bio"]
-                created_at = result["created_at"]
-                avatar_url = result["avatar_url"]
-                blog = result["blog"]
-                location = result["location"]
-                repositories = result["public_repos"]
-                followers = result["followers"]
-                following = result["following"]
-                global Mukesh
-                Mukesh = [[
-            InlineKeyboardButton(text="ᴘʀᴏғɪʟᴇ ʟɪɴᴋ", url=url),
-            InlineKeyboardButton("ᴄʟᴏsᴇ",callback_data="close_reply")
-            ]]     
-                caption = f"""ㅤㅤ✦ ɢɪᴛʜᴜʙ ɪɴғᴏ ᴏғ {name} ✦
+                url = result['html_url']
+                name = result['name']
+                company = result['company']
+                bio = result['bio']
+                created_at = result['created_at']
+                avatar_url = result['avatar_url']
+                blog = result['blog']
+                location = result['location']
+                repositories = result['public_repos']
+                followers = result['followers']
+                following = result['following']
+
+                caption = f"""ㅤㅤ❖ ɢɪᴛʜᴜʙ ɪɴғᴏ ᴏғ {name} ❖
                  
-•❅─────✧❅✦❅✧─────❅•
-๏ ᴜsᴇʀɴᴀᴍᴇ ➠ {username}
-๏ ʙɪᴏ ➠ {bio}
-๏ ʟɪɴᴋ ➠ [Here]({url})
-๏ ᴄᴏᴍᴩᴀɴʏ ➠ {company}
-๏ ᴄʀᴇᴀᴛᴇᴅ ᴏɴ ➠ {created_at}
-๏ ʀᴇᴩᴏsɪᴛᴏʀɪᴇs ➠ {repositories}
-๏ ʙʟᴏɢ ➠ {blog}
-๏ ʟᴏᴄᴀᴛɪᴏɴ ➠ {location}
-๏ ғᴏʟʟᴏᴡᴇʀs ➠ {followers}
-๏ ғᴏʟʟᴏᴡɪɴɢ ➠ {following}
+● ᴜsᴇʀɴᴀᴍᴇ ➥ {username}
+● ʙɪᴏ ➥ {bio}
+● ʟɪɴᴋ ➥ [Here]({url})
+● ᴄᴏᴍᴩᴀɴʏ ➥ {company}
+● ᴄʀᴇᴀᴛᴇᴅ ᴏɴ ➥ {created_at}
+● ʀᴇᴩᴏsɪᴛᴏʀɪᴇs ➥ {repositories}
+● ʙʟᴏɢ ➥ {blog}
+● ʟᴏᴄᴀᴛɪᴏɴ ➥ {location}
+● ғᴏʟʟᴏᴡᴇʀs ➥ {followers}
+● ғᴏʟʟᴏᴡɪɴɢ ➥ {following}
 
-๏ ᴍᴀᴅᴇ ʙʏ ➠ [ɢᴏᴅ ʀᴀᴠᴀɴ](https://t.me/GOD_R4V4N)"""
+❖ ᴘᴏᴡᴇʀᴇᴅ ʙʏ ➥ [๛ɴ ʏ ᴋ ᴀ ᴀ࿐](https://t.me/mahakxbot)"""
+
             except Exception as e:
-                await message.reply(f"#ERROR {e}")
-                  
-    await message.reply_photo(photo=avatar_url, caption=caption,reply_markup=InlineKeyboardMarkup(Mukesh))
+                print(str(e))
+                pass
 
+    # Create an inline keyboard with a close button
+    close_button = InlineKeyboardButton("ᴄʟᴏsᴇ", callback_data="close")
+    inline_keyboard = InlineKeyboardMarkup([[close_button]])
 
-__mod_name__ = "ɢɪᴛʜᴜʙ"
-
-__help__ = """
- ❍ ᴘʀᴏᴠɪᴅᴇs ʏᴏᴜ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀʙᴏᴜᴛ ᴀ ɢɪᴛʜᴜʙ ᴘʀᴏғɪʟᴇ. 
-
- ❍ /github <ᴜsᴇʀɴᴀᴍᴇ> *➛* ɢᴇᴛ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀʙᴏᴜᴛ ᴀ ɢɪᴛʜᴜʙ ᴜsᴇʀ.
-"""
-                
+    # Send the message with the inline keyboard
+    await message.reply_photo(photo=avatar_url, caption=caption, reply_markup=inline_keyboard)
+            
