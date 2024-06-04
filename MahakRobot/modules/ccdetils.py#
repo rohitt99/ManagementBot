@@ -1,7 +1,8 @@
-from ... import *
+from MahakRobot import *
 from pyrogram import *
-from pyrogram.types import *
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.types import *
+from MukeshRobot import pbot as app
 
 EVAA = [
     [
