@@ -118,7 +118,7 @@ async def chk_usr(_, message: Message):
 @app.on_message(filters.group & filters.command("imposter") & ~filters.bot & ~filters.via_bot)
 async def set_mataa(_, message: Message):
     if len(message.command) == 1:
-        return await message.reply("**✦ ᴅᴇᴛᴇᴄᴛ ᴘʀᴇᴛᴇɴᴅᴇʀ ᴜsᴇʀs ᴜsᴀɢᴇ ➥ ᴘʀᴇᴛᴇɴᴅᴇʀ ᴏɴ|ᴏғғ**")
+        return await message.reply("**✦ ᴅᴇᴛᴇᴄᴛ ᴘʀᴇᴛᴇɴᴅᴇʀ ᴜsᴇʀs ᴜsᴀɢᴇ ➥ ᴘʀᴇᴛᴇɴᴅᴇʀ ᴇɴᴀʙʟᴇ|ᴅɪsᴀʙʟᴇ**")
     if message.command[1] == "enable":
         cekset = await impo_on(message.chat.id)
         if cekset:
