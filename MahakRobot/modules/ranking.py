@@ -24,7 +24,7 @@ from pyrogram.types import InlineKeyboardMarkup, Message
 
 mongo_client = MongoClient(MONGO_DB_URI)
 db = mongo_client["natu_rankings"]
-collection = db["ranking"]
+collection = db["rankings"]
 
 user_data = {}
 
