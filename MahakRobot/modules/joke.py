@@ -18,4 +18,7 @@ async def joke(_, message):
     response = requests.get(JOKE_API_ENDPOINT)
     r = response.json()
     joke_text = r['jokeContent']
-    await message.reply_text(joke_text, caption=f"❖ ᴊᴏᴋᴇs ʙʏ ➥ ๛ᴍ ᴀ ʜ ᴀ ᴋ ♡゙", reply_markup=InlineKeyboardMarkup(EVAA),)
+    await message.reply_text(joke_text)
+
+
+#    await message.reply_text(joke_text, caption=f"❖ ᴊᴏᴋᴇs ʙʏ ➥ ๛ᴍ ᴀ ʜ ᴀ ᴋ ♡゙", reply_markup=InlineKeyboardMarkup(EVAA),)
