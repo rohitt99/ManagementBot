@@ -16,18 +16,14 @@ from pyrogram import Client, filters
 import requests
 import os
 import time 
-from pyrogram import filters
 from pyrogram.enums import ChatType
 from pyrogram.types import InlineKeyboardMarkup, Message
-
-
 
 mongo_client = MongoClient(MONGO_DB_URI)
 db = mongo_client["natu_rankings"]
 collection = db["rankings"]
 
 user_data = {}
-
 today = {}
 
 MISHI = [
@@ -38,7 +34,7 @@ MISHI = [
     "https://graph.org/file/84e84ff778b045879d24f.jpg",
     "https://graph.org/file/a4a8f0e5c0e6b18249ffc.jpg",
     "https://graph.org/file/ed92cada78099c9c3a4f7.jpg",
-    "https://graph.org/file/d6360613d0fa7a9d2f90b.jpg"
+    "https://graph.org/file/d6360613d0fa7a9d2f90b.jpg",
     "https://graph.org/file/37248e7bdff70c662a702.jpg",
     "https://graph.org/file/0bfe29d15e918917d1305.jpg",
     "https://graph.org/file/16b1a2828cc507f8048bd.jpg",
@@ -51,12 +47,13 @@ MISHI = [
     "https://graph.org/file/3514efaabe774e4f181f2.jpg",
 ]
 
-
-#watcher
+# Watcher
 
 @app.on_message(filters.group & filters.group, group=6)
 def today_watcher(_, message):
     chat_id = message.chat.id
+    if message.from_user is None:
+        return  # Skip if from_user is None
     user_id = message.from_user.mention
     if chat_id in today and user_id in today[chat_id]:
         today[chat_id][user_id]["total_messages"] += 1
@@ -68,14 +65,14 @@ def today_watcher(_, message):
         else:
             today[chat_id][user_id]["total_messages"] = 1
 
-
 @app.on_message(filters.group & filters.group, group=11)
 def _watcher(_, message):
-    user_id = message.from_user.mention    
+    if message.from_user is None:
+        return  # Skip if from_user is None
+    user_id = message.from_user.mention
     user_data.setdefault(user_id, {}).setdefault("total_messages", 0)
     user_data[user_id]["total_messages"] += 1    
     collection.update_one({"_id": user_id}, {"$inc": {"total_messages": 1}}, upsert=True)
-
 
 # ------------------- ranks ------------------ #
 
@@ -105,8 +102,6 @@ async def today_(_, message):
     else:
         await message.reply_text("❅ ɴᴏ ᴅᴀᴛᴀ ᴀᴠᴀɪʟᴀʙʟᴇ ғᴏʀ ᴛᴏᴅᴀʏ.")
 
-
-
 @app.on_message(filters.command("rankings"))
 async def rankings(_, message):
     top_members = collection.find().sort("total_messages", -1).limit(10)
@@ -127,8 +122,6 @@ async def rankings(_, message):
                InlineKeyboardButton("ᴛᴏᴅᴀʏ ʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ", callback_data="today"),
             ]])
     await message.reply_photo(random.choice(MISHI), caption=response, reply_markup=button)
-
-
 
 # -------------------- regex -------------------- # 
 
@@ -158,26 +151,8 @@ async def today_rank(_, query):
     else:
         await query.answer("❅ ɴᴏ ᴅᴀᴛᴀ ᴀᴠᴀɪʟᴀʙʟᴇ ғᴏʀ ᴛᴏᴅᴀʏ.")
 
-
-
 @app.on_callback_query(filters.regex("overall"))
 async def overall_rank(_, query):
     top_members = collection.find().sort("total_messages", -1).limit(10)
 
-    response = "**✦ 📈 ᴏᴠᴇʀᴀʟʟ ʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ**\n\n"
-    for idx, member in enumerate(top_members, start=1):
-        user_id = member["_id"]
-        total_messages = member["total_messages"]
-        try:
-            user_name = (await app.get_users(user_id)).first_name
-        except:
-            user_name = "Unknown"
-
-        user_info = f"**{idx}**.   {user_name} ➠ {total_messages}\n"
-        response += user_info 
-    button = InlineKeyboardMarkup(
-            [[    
-               InlineKeyboardButton("ᴛᴏᴅᴀʏ ʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ", callback_data="today"),
-            ]])
-    await query.message.edit_text(response, reply_markup=button)
-      
+    response = "**✦ 📈 ᴏᴠᴇʀᴀʟʟ
