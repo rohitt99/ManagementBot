@@ -12,7 +12,7 @@ async def imagine_(b, message: Message):
     else:
 
         text =message.text.split(None, 1)[1]
-    roy=await message.reply_text( "`Please wait...,\n\nGenerating prompt .. ...`")
+    roy=await message.reply_text( "ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ ɢᴇɴᴇʀᴀᴛɪɴɢ ɪᴍᴀɢᴇ...")
     try:
         await b.send_chat_action(message.chat.id, ChatAction.UPLOAD_PHOTO)
         x=api.ai_image(text)
