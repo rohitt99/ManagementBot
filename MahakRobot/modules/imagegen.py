@@ -87,42 +87,42 @@ async def generate_image_handler(event, model_id):
         timeout_seconds -= 5  # Decrement timeout by 5 seconds
 
 
-@client.on(events.NewMessage(pattern=r"/meinamix"))
+@app.on(events.NewMessage(pattern=r"/meinamix"))
 async def meinamix_handler(event):
     await generate_image_handler(event, model_id=2)
 
 
-@client.on(events.NewMessage(pattern=r"/sushi"))
+@app.on(events.NewMessage(pattern=r"/sushi"))
 async def darksushi_handler(event):
     await generate_image_handler(event, model_id=7)
 
 
-@client.on(events.NewMessage(pattern=r"/meinahentai"))
+@app.on(events.NewMessage(pattern=r"/meinahentai"))
 async def meinahentai_handler(event):
     await generate_image_handler(event, model_id=8)
 
 
-@client.on(events.NewMessage(pattern=r"/darksushimix"))
+@app.on(events.NewMessage(pattern=r"/darksushimix"))
 async def darksushimix_handler(event):
     await generate_image_handler(event, model_id=9)
 
 
-@client.on(events.NewMessage(pattern=r"/anylora"))
+@app.on(events.NewMessage(pattern=r"/anylora"))
 async def anylora_handler(event):
     await generate_image_handler(event, model_id=3)
 
 
-@client.on(events.NewMessage(pattern=r"/cetusmix"))
+@app.on(events.NewMessage(pattern=r"/cetusmix"))
 async def cetusmix_handler(event):
     await generate_image_handler(event, model_id=10)
 
 
-@client.on(events.NewMessage(pattern=r"/darkv2"))
+@app.on(events.NewMessage(pattern=r"/darkv2"))
 async def darkv_handler(event):
     await generate_image_handler(event, model_id=14)
 
 
-@client.on(events.NewMessage(pattern=r"/creative"))
+@app.on(events.NewMessage(pattern=r"/creative"))
 async def creative_handler(event):
     await generate_image_handler(event, model_id=12)
 
