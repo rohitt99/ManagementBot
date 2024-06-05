@@ -15,7 +15,7 @@ API_URL = "https://sugoi-api.vercel.app/search"
 async def bing_search(app, message):
     try:
         if len(message.command) == 1:
-            await message.reply_text("Please provide a keyword to search.")
+            await message.reply_text("ᴘʟᴇᴀsᴇ ᴘʀᴏᴠɪᴅᴇ ᴋᴇʏᴡᴏʀᴅ ᴛᴏ sᴇᴀʀᴄʜ.")
             return
 
         keyword = " ".join(message.command[1:])
@@ -34,6 +34,6 @@ async def bing_search(app, message):
                     message_text += f"{title}\n{link}\n\n"
                 await message.reply_text(message_text.strip())
         else:
-            await message.reply_text("Sorry, something went wrong with the search.")
+            await message.reply_text("sᴏʀʀʏ, sᴏᴍᴇᴛʜɪɴɢ ᴡᴇɴᴛ ᴡʀᴏɴɢ ᴡɪᴛʜ ᴛʜᴇ sᴇᴀʀᴄʜ.")
     except Exception as e:
         await message.reply_text(f"An error occurred: {str(e)}")
