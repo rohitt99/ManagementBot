@@ -51,9 +51,9 @@ MISHI = [
 
 @app.on_message(filters.group & filters.group, group=6)
 def today_watcher(_, message):
-    chat_id = message.chat.id
     if message.from_user is None:
         return  # Skip if from_user is None
+    chat_id = message.chat.id
     user_id = message.from_user.mention
     if chat_id in today and user_id in today[chat_id]:
         today[chat_id][user_id]["total_messages"] += 1
@@ -138,7 +138,7 @@ async def today_rank(_, query):
                 try:
                     user_name = (await app.get_users(user_id)).first_name
                 except:
-                    user_name = "Unknown"
+                user_name = "Unknown"
                 user_info = f"**{idx}**.   {user_name} ➠ {total_messages}\n"
                 response += user_info
             button = InlineKeyboardMarkup(
@@ -155,4 +155,25 @@ async def today_rank(_, query):
 async def overall_rank(_, query):
     top_members = collection.find().sort("total_messages", -1).limit(10)
 
-    response = "**✦ 📈 ᴏᴠᴇʀᴀʟʟ
+    response = "**✦ 📈 ᴏᴠᴇʀᴀʟʟ ʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ**\n\n"
+    for idx, member in enumerate(top_members, start=1):
+        user_id = member["_id"]
+        total_messages = member["total_messages"]
+        try:
+            user_name = (await app.get_users(user_id)).first_name
+        except:
+            user_name = "Unknown"
+
+        user_info = f"**{idx}**.   {user_name} ➠ {total_messages}\n"
+        response += user_info 
+    button = InlineKeyboardMarkup(
+            [[    
+               InlineKeyboardButton("ᴛᴏᴅᴀʏ ʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ", callback_data="today"),
+            ]])
+    await query.message.edit_text(response, reply_markup=button)
+
+# Running the bot
+if __name__ == "__main__":
+    app.run()
+                
+                    
