@@ -5,7 +5,7 @@ import asyncio
 
 import aiohttp
 from telethon import events
-from MahakRobot import pbot as client
+from MahakRobot import pbot as app
 
 
 # <=======================================================================================================>
