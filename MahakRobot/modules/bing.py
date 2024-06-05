@@ -25,7 +25,7 @@ async def bing_search(app, message):
         if response.status_code == 200:
             results = response.json()
             if not results:
-                await message.reply_text("No results found.")
+                await message.reply_text("ɴᴏᴛ ʀᴇsᴜʟᴛ ғᴏᴜɴᴅ.")
             else:
                 message_text = ""
                 for result in results[:7]:
