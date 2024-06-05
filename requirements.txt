@@ -3,6 +3,7 @@ unidecode
 requests
 aiohttp==3.9.1
 apscheduler==3.6.3
+lexica-api
 asyncio==3.4.3
 MukeshAPI
 halo==0.0.31
