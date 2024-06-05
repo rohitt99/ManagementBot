@@ -1,4 +1,4 @@
-import random
+  import random
 import asyncio
 from platform import python_version as pyver
 
@@ -8,7 +8,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from telegram import __version__ as lver
 from telethon import __version__ as tver
 
-from MahakRobot import SUPPORT_CHAT, pbot,BOT_USERNAME, OWNER_ID,BOT_NAME,START_IMG
+from MahakRobot import SUPPORT_CHAT, pbot, BOT_USERNAME, OWNER_ID, BOT_NAME, START_IMG
 
 MISHI = [
     "https://graph.org/file/f86b71018196c5cfe7344.jpg",
@@ -18,7 +18,7 @@ MISHI = [
     "https://graph.org/file/84e84ff778b045879d24f.jpg",
     "https://graph.org/file/a4a8f0e5c0e6b18249ffc.jpg",
     "https://graph.org/file/ed92cada78099c9c3a4f7.jpg",
-    "https://graph.org/file/d6360613d0fa7a9d2f90b.jpg"
+    "https://graph.org/file/d6360613d0fa7a9d2f90b.jpg",
     "https://graph.org/file/37248e7bdff70c662a702.jpg",
     "https://graph.org/file/0bfe29d15e918917d1305.jpg",
     "https://graph.org/file/16b1a2828cc507f8048bd.jpg",
@@ -33,7 +33,7 @@ MISHI = [
 
 Mukesh = [
     [
-        InlineKeyboardButton(text="ᴜᴘᴅᴀᴛᴇ", url=f"https://t.me/God_Ravana"),
+        InlineKeyboardButton(text="ᴜᴘᴅᴀᴛᴇ", url="https://t.me/God_Ravana"),
         InlineKeyboardButton(text="ꜱᴜᴘᴘᴏʀᴛ", url=f"https://t.me/{SUPPORT_CHAT}"),
     ],
     [
@@ -43,8 +43,6 @@ Mukesh = [
         ),
     ],
 ]
-
-
 
 @pbot.on_message(filters.command("alive"))
 async def restart(client, m: Message):
@@ -66,10 +64,10 @@ async def restart(client, m: Message):
     await asyncio.sleep(0.2)
     await m.reply_photo(
         random.choice(MISHI),
-        caption=f"""** ✦ ʜᴇʏ, ɪ ᴀᴍ [{BOT_NAME}](f"t.me/{BOT_USERNAME}") ✦**\n\n❍ **ʟɪʙʀᴀʀʏ ➛** `{lver}`\n❍ **ᴛᴇʟᴇᴛʜᴏɴ ➛** `{tver}`\n❍ **ᴘʏʀᴏɢʀᴀᴍ ➛** `{pver}`\n❍ **ᴘʏᴛʜᴏɴ ➛** `{pyver()}`\n\n❍ **ᴍᴀᴅᴇ ʙʏ ➛** [ɢᴏᴅ ʀᴀᴠᴀɴ](tg://user?id={OWNER_ID})""",
+        caption=f"""** ✦ ʜᴇʏ, ɪ ᴀᴍ [{BOT_NAME}](https://t.me/{BOT_USERNAME}) ✦**\n\n❍ **ʟɪʙʀᴀʀʏ ➛** `{lver}`\n❍ **ᴛᴇʟᴇᴛʜᴏɴ ➛** `{tver}`\n❍ **ᴘʏʀᴏɢʀᴀᴍ ➛** `{pver}`\n❍ **ᴘʏᴛʜᴏɴ ➛** `{pyver()}`\n\n❍ **ᴍᴀᴅᴇ ʙʏ ➛** [ɢᴏᴅ ʀᴀᴠᴀɴ](tg://user?id={OWNER_ID})""",
         reply_markup=InlineKeyboardMarkup(Mukesh),
     )
-    
+ 
 __mod_name__ = "ᴀʟɪᴠᴇ"
 __help__ = """
  ❍ /alive ➛ ᴄʜᴇᴄᴋ ʙᴏᴛ ᴀʟɪᴠᴇ sᴛᴀᴛᴜs.
