@@ -1,7 +1,7 @@
 from MahakRobot import MONGO_DB_URI
 from motor.motor_asyncio import AsyncIOMotorClient as MongoCli
 
-mongo = MongoCli(MONGO_URL)
+mongo = MongoCli(MONGO_DB_URI)
 db = mongo.chats
 
 db = db.chatsdb
