@@ -1,13 +1,4 @@
-from pymongo import MongoClient
 
-import MahakRobot
-
-aaru1 = MongoClient(config.MONGO_DB_URI)
-aarubot = aaru1["AaruDB"]["AaruChat"]
-
-
-from .chats import *
-from .users import *
 
 #MIT License
 #Copyright (c) 2023, ©NovaNetworks
