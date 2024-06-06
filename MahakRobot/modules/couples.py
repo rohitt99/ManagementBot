@@ -121,5 +121,7 @@ async def ctest(_, message):
 __help__ = """
 
  ❍ /couples *➛* ɢᴇɴᴇʀᴀᴛᴇ ᴀ ʀᴀɴᴅᴏᴍ ᴄᴏᴜᴘʟᴇs.
+"""
+__mod_name__ = "ᴄᴏᴜᴘʟᴇs"
 
     
