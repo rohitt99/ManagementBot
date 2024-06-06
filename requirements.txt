@@ -6,6 +6,7 @@ apscheduler==3.6.3
 lexica-api
 asyncio==3.4.3
 MukeshAPI
+events
 halo==0.0.31
 blackpink
 qrcode
