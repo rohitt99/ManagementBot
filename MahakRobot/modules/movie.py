@@ -70,3 +70,10 @@ def get_movie_info(movie_name):
         return info
     else:
         return "ᴍᴏᴠɪᴇ ɴᴏᴛ ғᴏᴜɴᴅ ᴏʀ ᴀᴘɪ ʀᴇǫᴜᴇsᴛ ғᴀɪʟᴇᴅ."
+
+__help__ = """
+
+❍ /movie *➛* ɢᴇᴛ ᴍᴏᴠɪᴇ ᴅᴇᴛᴀɪʟs.
+"""
+
+__mod_name__ = "ᴍᴏᴠɪᴇ"
