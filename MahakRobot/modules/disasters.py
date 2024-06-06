@@ -177,7 +177,7 @@ def addwhitelist(update: Update, context: CallbackContext) -> str:
         DRAGONS.remove(user_id)
 
     if user_id in DEMONS:
-    rt += "๏ ʀᴇǫᴜᴇsᴛᴇᴅ ʜᴀ ᴛᴏ ᴅᴇᴍᴏᴛᴇ ᴛʜɪs ᴅᴇᴍᴏɴ ᴅɪsᴀsᴛᴇʀ ᴛᴏ ᴡᴏʟғ."
+        rt += "๏ ʀᴇǫᴜᴇsᴛᴇᴅ ʜᴀ ᴛᴏ ᴅᴇᴍᴏᴛᴇ ᴛʜɪs ᴅᴇᴍᴏɴ ᴅɪsᴀsᴛᴇʀ ᴛᴏ ᴡᴏʟғ."
         data["supports"].remove(user_id)
         DEMONS.remove(user_id)
 
