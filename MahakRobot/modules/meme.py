@@ -90,3 +90,6 @@ async def cursed_handler(event):
 
 __help__ = """
 ❍ /joke *➛* ᴛᴏ ɢᴇᴛ ʀᴀɴᴅᴏᴍ ᴊᴏᴋᴇs.
+
+"""
+__mod_name__ = "ᴊᴏᴋᴇ"
