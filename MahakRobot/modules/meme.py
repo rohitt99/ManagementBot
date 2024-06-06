@@ -89,7 +89,7 @@ async def cursed_handler(event):
     await fetch_meme(event, "cursedcomments")
 
 __help__ = """
-❍ /joke *➛* ᴛᴏ ɢᴇᴛ ʀᴀɴᴅᴏᴍ ᴊᴏᴋᴇs.
+❍ /memes *➛* ᴛᴏ ɢᴇᴛ ʀᴀɴᴅᴏᴍ ᴍᴇᴍᴇs.
 
 """
-__mod_name__ = "ᴊᴏᴋᴇ"
+__mod_name__ = "ᴍᴇᴍᴇs"
