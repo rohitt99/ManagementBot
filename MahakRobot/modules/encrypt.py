@@ -6,7 +6,7 @@ from MahakRobot import pbot as mukesh
 @mukesh.on_message(filters.command("encrypt"))
 async def encyrpt(bot, message):
     if len(message.command) < 2:
-        return await message.reply_text("**❍ ᴇxᴀᴍᴘʟᴇ ➛ /encyrpt ɪɴᴅɪᴀ")
+        return await message.reply_text("**Example:**\n\n`/encyrpt India`")
     m = message.text.split(' ',1)[1]
     try:
         Secure = secureme.encrypt(m)
@@ -20,7 +20,7 @@ async def encyrpt(bot, message):
 @mukesh.on_message(filters.command("decrypt"))
 async def decrypt(bot, message):
     if len(message.command) < 2:
-        return await message.reply_text("**❍ ᴇxᴀᴍᴘʟᴇ ➛ /decrypt ɴsɪɴғ")
+        return await message.reply_text("**Example:**\n\n`/decrypt Nsinf`")
     m = message.text.split(' ',1)[1]
     try:
         Decrypt = secureme.decrypt(m)
@@ -30,6 +30,7 @@ async def decrypt(bot, message):
 
     except Exception as e:
         await message.reply_text(f"{e}")
+
 
 
 __mod_name__ = "ᴇɴᴄʀʏᴘᴛ"
