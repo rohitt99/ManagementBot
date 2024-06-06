@@ -1,11 +1,20 @@
+
+
+# <============================================== IMPORTS =========================================================>
 import asyncio
+
 import aiohttp
 from telethon import events
-from MahakRobot import pbot as client
+
+from JARVISROBO import tbot as app
+
+# <=======================================================================================================>
 
 BASE_URL = "https://lexica.qewertyy.me"
 SESSION_HEADERS = {"Host": "lexica.qewertyy.me"}
 
+
+# <=============================================== CLASS + FUNCTION ========================================================>
 class AsyncClient:
     def __init__(self):
         self.url = BASE_URL
@@ -25,7 +34,6 @@ class AsyncClient:
                 return await resp.json()
         except Exception as e:
             print(f"Request failed: {str(e)}")
-            return None
 
     async def get_images(self, task_id, request_id):
         data = {"task_id": task_id, "request_id": request_id}
@@ -36,10 +44,7 @@ class AsyncClient:
                 return await resp.json()
         except Exception as e:
             print(f"Request failed: {str(e)}")
-            return None
 
-    async def close(self):
-        await self.session.close()
 
 async def generate_image_handler(event, model_id):
     command_parts = event.text.split(" ", 1)
@@ -53,63 +58,73 @@ async def generate_image_handler(event, model_id):
     # Send the initial "Generating your image, wait sometime" message
     reply_message = await event.reply("Generating your image, please wait...")
 
-    client = AsyncClient()
-    response = await client.generate(model_id, prompt, negative_prompt)
-    if response is None:
-        await reply_message.edit("Failed to send the generation request.")
-        await client.close()
-        return
-
+    app = AsyncClient()
+    response = await app.generate(model_id, prompt, negative_prompt)
     task_id = response["task_id"]
     request_id = response["request_id"]
 
-    timeout_seconds = 600  # 10 minutes
-    while timeout_seconds > 0:
-        generated_images = await client.get_images(task_id, request_id)
-        if generated_images and "img_urls" in generated_images:
+    while True:
+        generated_images = await app.get_images(task_id, request_id)
+
+        if "img_urls" in generated_images:
             for img_url in generated_images["img_urls"]:
                 # Delete the initial reply message
                 await reply_message.delete()
+
                 # Send the generated image
                 await event.reply(file=img_url)
-            break
+            break  # Exit the loop when images are available
         else:
+            # Wait for a few seconds before checking again
             await asyncio.sleep(5)
-            timeout_seconds -= 5
 
-    if timeout_seconds <= 0:
-        await reply_message.edit("Image generation timed out.")
+        # Optionally, you can add a timeout to avoid an infinite loop
+        timeout_seconds = 600  # 10 minutes (adjust as needed)
+        if timeout_seconds <= 0:
+            await reply_message.edit("Image generation timed out.")
+            break
 
-    await client.close()
+        timeout_seconds -= 5  # Decrement timeout by 5 seconds
 
-@client.on(events.NewMessage(pattern=r"/meinamix"))
+
+@app.on(events.NewMessage(pattern=r"/meinamix"))
 async def meinamix_handler(event):
     await generate_image_handler(event, model_id=2)
 
-@client.on(events.NewMessage(pattern=r"/sushi"))
+
+@app.on(events.NewMessage(pattern=r"/sushi"))
 async def darksushi_handler(event):
     await generate_image_handler(event, model_id=7)
 
-@client.on(events.NewMessage(pattern=r"/meinahentai"))
+
+@app.on(events.NewMessage(pattern=r"/meinahentai"))
 async def meinahentai_handler(event):
     await generate_image_handler(event, model_id=8)
 
-@client.on(events.NewMessage(pattern=r"/darksushimix"))
+
+@app.on(events.NewMessage(pattern=r"/darksushimix"))
 async def darksushimix_handler(event):
     await generate_image_handler(event, model_id=9)
 
-@client.on(events.NewMessage(pattern=r"/anylora"))
+
+@app.on(events.NewMessage(pattern=r"/anylora"))
 async def anylora_handler(event):
     await generate_image_handler(event, model_id=3)
 
-@client.on(events.NewMessage(pattern=r"/cetusmix"))
+
+@app.on(events.NewMessage(pattern=r"/cetusmix"))
 async def cetusmix_handler(event):
     await generate_image_handler(event, model_id=10)
 
-@client.on(events.NewMessage(pattern=r"/darkv2"))
+
+@app.on(events.NewMessage(pattern=r"/darkv2"))
 async def darkv_handler(event):
     await generate_image_handler(event, model_id=14)
 
-@client.on(events.NewMessage(pattern=r"/creative"))
+
+@app.on(events.NewMessage(pattern=r"/creative"))
 async def creative_handler(event):
     await generate_image_handler(event, model_id=12)
+
+
+# <================================================ END =======================================================>
