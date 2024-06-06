@@ -136,4 +136,8 @@ async def set_mataa(_, message: Message):
     else:
         await message.reply("**✦ ᴅᴇᴛᴇᴄᴛ ᴘʀᴇᴛᴇɴᴅᴇʀ ᴜsᴇʀs ᴜsᴀɢᴇ ➥ ᴘʀᴇᴛᴇɴᴅᴇʀ ᴇɴᴀʙʟᴇ|ᴅɪsᴀʙʟᴇ**")
 
+__help__ = """
+❍  /imposter Enable || Disable ➥ ᴛʜɪs ɪs ᴜsᴇʀ ɴᴀᴍᴇ/ᴜsᴇʀɴᴀᴍᴇ ᴄʜᴀɴɢᴇ ᴀʟᴇʀᴛ sʏsᴛᴇᴍ.
+
+__mod_name__ = "ɪᴍᴘᴏsᴛᴇʀ"
     
