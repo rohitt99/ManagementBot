@@ -16,9 +16,3 @@ async def cosplay(_,msg):
     img = requests.get("https://waifu-api.vercel.app").json()
     await msg.reply_photo(img, caption=f"❅ ᴄᴏsᴘʟᴀʏ ʙʏ ➠ ‌ ๛ᴍ ᴀ ʜ ᴀ ᴋ ♡゙", reply_markup=InlineKeyboardMarkup(MAHAK),)
 
-__help__ = """
-
-❍ /cosplay *➛* ɢᴇɴᴇʀᴀᴛᴇ ᴀ ʀᴀɴᴅᴏᴍ ᴄᴏsᴘʟᴀʏ ɪᴍᴀɢᴇ.
-
-"""
-__mode_name__ = "ᴄᴏsᴘʟᴀʏ"
