@@ -6,7 +6,7 @@ import asyncio
 import aiohttp
 from telethon import events
 
-from JARVISROBO import tbot as app
+from MahakRobot import tbot as app
 
 # <=======================================================================================================>
 
