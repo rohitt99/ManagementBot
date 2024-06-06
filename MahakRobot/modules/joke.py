@@ -26,3 +26,7 @@ async def joke(_, message):
 __help__ = """
 
 ❍ /joke  *➛* ɢᴇɴᴇʀᴀᴛᴇ ᴀ ʀᴀɴᴅᴏᴍ ᴊᴏᴋᴇ.
+
+"""
+__mode_name__ = "ᴊᴏᴋᴇ"
+
