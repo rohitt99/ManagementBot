@@ -22,3 +22,7 @@ async def joke(_, message):
 
 
 #    await message.reply_text(joke_text, caption=f"❖ ᴊᴏᴋᴇs ʙʏ ➥ ๛ᴍ ᴀ ʜ ᴀ ᴋ ♡゙", reply_markup=InlineKeyboardMarkup(EVAA),)
+
+__help__ = """
+
+❍ /joke  *➛* ɢᴇɴᴇʀᴀᴛᴇ ᴀ ʀᴀɴᴅᴏᴍ ᴊᴏᴋᴇ.
