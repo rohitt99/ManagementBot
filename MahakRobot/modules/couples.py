@@ -118,4 +118,8 @@ async def ctest(_, message):
     except Exception:
        pass
 
+__help__ = """
+
+ ❍ /couples *➛* ɢᴇɴᴇʀᴀᴛᴇ ᴀ ʀᴀɴᴅᴏᴍ ᴄᴏᴜᴘʟᴇs.
+
     
