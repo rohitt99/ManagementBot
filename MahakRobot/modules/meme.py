@@ -87,3 +87,6 @@ async def shitposting_handler(event):
 @meow.on(events.NewMessage(pattern="^/cursed"))
 async def cursed_handler(event):
     await fetch_meme(event, "cursedcomments")
+
+__help__ = """
+❍ /joke *➛* ᴛᴏ ɢᴇᴛ ʀᴀɴᴅᴏᴍ ᴊᴏᴋᴇs.
