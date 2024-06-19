@@ -14,14 +14,14 @@ class Config(object):
    
     TOKEN = getenv("TOKEN", None)
   
-    OWNER_ID = getenv("OWNER_ID", "6927241780") 
+    OWNER_ID = getenv("OWNER_ID", "6722550550") 
 
 
-    OWNER_USERNAME = ("OWNER_USERNAME", "C0DE_RAVAN")
+    OWNER_USERNAME = ("OWNER_USERNAME", "ROHIT_LEGEND")
     
-    SUPPORT_CHAT = getenv("SUPPORT_CHAT", "Ravan_Lankaa")
+    SUPPORT_CHAT = getenv("SUPPORT_CHAT", "IMPERILMENT_SUPPORT")
    
-    START_IMG = getenv("START_IMG", "https://graph.org/file/eaa3a2602e43844a488a5.jpg")
+    START_IMG = getenv("START_IMG", "https://graph.org/file/fc3fff668765511b35f5b.jpg")
 
     JOIN_LOGGER = getenv("JOIN_LOGGER", "-1002024991604")
    
@@ -33,7 +33,7 @@ class Config(object):
    
     LOG_CHANNEL = getenv("LOG_CHANNEL", "-1002100219353")
    
-    BOT_USERNAME = getenv("BOT_USERNAME" , "MahakXBot")
+    BOT_USERNAME = getenv("BOT_USERNAME" , "Imperilment_bot")
    
     DATABASE_URL = getenv("DATABASE_URL", None)
 
