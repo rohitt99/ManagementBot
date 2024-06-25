@@ -341,7 +341,7 @@ def start(update: Update, context: CallbackContext):
     else:
         update.effective_message.reply_photo(
             random.choice(NYKAA),
-            caption="⬤ ๛ᴍ ᴀ ʜ ᴀ ᴋ ♡゙ ɪs ᴀʟɪᴠᴇ ʙᴀʙʏ ♥︎ \n\n⬤ ᴜᴘᴛɪᴍᴇ ➥ `<code>{}</code>`".format(
+            caption="⬤ ๛𝙄𝙈𝙋𝙀𝙍𝙄𝙇𝙈𝙀𝙉𝙏♡゙ ɪs ᴀʟɪᴠᴇ ʙᴀʙʏ ♥︎ \n\n⬤ ᴜᴘᴛɪᴍᴇ ➥ `<code>{}</code>`".format(
                 uptime
             ),
             reply_markup=InlineKeyboardMarkup(roy),
